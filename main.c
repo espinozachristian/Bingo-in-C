@@ -81,11 +81,12 @@ void ler_aposta(int *aposta,int n){
 			scanf("%d",aposta+i);
             repetido = 1;
             for (j = 0; j < i; j++){
-                if ( *(aposta+i) == *(aposta+j) ){
+                if ( *(aposta+i) < 0 || *(aposta+i)>100 ||  *(aposta+i) == *(aposta+j) ){
                 printf("*******************************************\n");
                 printf("*                 Erro                    *\n");
 				printf("*    Numero digitado ja foi apostado      *\n");
-				printf("*                                         *\n");
+				printf("*         Ou Acima do permitido           *\n");
+				printf("*             para se apostar             *\n");
 				printf("*******************************************\n");
 				printf("\n"); 
 				repetido = 0;
@@ -101,7 +102,7 @@ int* compara_aposta(int *aposta, int *sorteio, int *qtdacertos, int na, int ns){
 	int i,j,a;
 	for(i=0;i<na;i++){
 		for(j=0;j <na;j++){
-				if( *(aposta+i)== *(sorteio+j)){
+				if(*(aposta+i)== *(sorteio+j)){
 			*qtdacertos = *qtdacertos+1;
 			}
 		}
