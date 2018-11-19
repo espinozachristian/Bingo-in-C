@@ -65,8 +65,9 @@ void sorteio_num(int *sorteio,int n){
                 if (*(sorteio+i) == *(sorteio+j)) 
 				repetido = 0;
             }        
-	   }while(!repetido);  
-        printf("%d\n", *(sorteio+i));
+	   }while(!repetido);
+	   	if(i % 5 == 0) 
+        printf("%d ", *(sorteio+i));
     }
 }
 
@@ -88,11 +89,11 @@ void ler_aposta(int *aposta,int n){
 				printf("*******************************************\n");
 				printf("\n"); 
 				repetido = 0;
-					}
+				 }
             	}        
 	   	}while(!repetido);  
 	}
-		
+
 }
 
 
@@ -117,9 +118,10 @@ int* compara_aposta(int *aposta, int *sorteio, int *qtdacertos, int na, int ns){
 		}
 		}
 	}
-	printf("\n numero de acertos %d\n\n", *qtdacertos);
+	printf("\n numero de acertos...... %d\n\n", *qtdacertos);
 	printf("Os numeros Acertados Foram:\n");
    	for(i=0;i< *qtdacertos;i++){
-   		printf("%d\n",*(resultante+i));
+   		if(i % 5 == 0)
+   		printf("%d    ",*(resultante+i));
 	   }
 }
