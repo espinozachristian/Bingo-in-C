@@ -3,21 +3,26 @@
 #include <time.h>
 #include<stdbool.h>
 
-/* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
+/*Prototipos das funçoes */
 void sorteio_num(int *sorteio,int n);
 void ler_aposta(int *aposta,int n);
 int* compara_aposta(int *aposta, int *sorteio, int *qtdacertos, int na, int ns);
 void bubblesort2(int *v, int n);
 
+
+/* construção da função principal */
 int main(int argc, char *argv[]) {
 	int na;
 	int ns=20;
 	int *sorteio = malloc(sizeof(int)*ns);
 	int *aposta = malloc(sizeof(int)*na);
 	int qntd=0;
+	int vetorapostafinal;
+	int i = 0;
+	int auxiliar = 0;
 
-	
+	/* Layout de entrada do bingo */
 	printf("\t****************************************\n");
 	printf("\t**          Bem Vindo ao Sorteio      **\n");
 	printf("\t**        Criado por : Vermillionz    **\n");
@@ -40,28 +45,40 @@ int main(int argc, char *argv[]) {
 	printf("\t*******************************************\n");
 	printf("\n");
 	
-	printf("Digite a quantidade de numeros que gostaria de apostar!\n");
-	printf("Voce pode escolher apostar de 1 a 20 numeros por vez\n");
-	scanf("%d",&na);
+	/* Solicitação da quantidade apostada pelo usuario */
+	do{
+		printf("Digite a quantidade de numeros que gostaria de apostar!\n");
+		printf("Voce pode escolher apostar de 1 a 20 numeros por vez\n");
+		scanf("%d",&na);
+			if(na >0 && na <=20)
+					auxiliar = 1;
+			else
+			auxiliar=0;
+	    }while(!auxiliar);
 	
-	int vetorapostafinal;
+	/* Chamada das funçoes */
 	ler_aposta(aposta,na);
 	sorteio_num(sorteio,ns);
 	vetorapostafinal=compara_aposta(aposta,sorteio,&qntd,na,ns);
+	bubblesort2(sorteio,ns);
+	
+	/*Layout */
 	printf("\t*****************************************\n");
 	printf("\t**                Numeros            **\n");
 	printf("\t**             	Sorteados           **\n");
 	printf("\t**                                     **\n");
 	printf("\t*****************************************\n");
 	printf("\n");
-	int i = 0;
-	bubblesort2(sorteio,ns);
+
+	/* Exibindo os numeros Sorteados pela funçao sorteio_num */
 	for (i = 0; i < ns; i++){
 		if(i % 5 == 0){
    			printf("\n");
 		   }
 	printf("\t%d ", *(sorteio+i));
 	}
+	
+	/*Informando acertos do usuario */
 	if(qntd > 0){
 	printf("\n\n\n");
 	printf("\t*****************************************\n");
@@ -100,6 +117,7 @@ void sorteio_num(int *sorteio,int n){
 	printf("\n");
 	 for (i = 0; i < n; i++) {
         int repetido = 0;
+        /*Validando os numeros Sorteados se não são repetidos ou se já existem no vetor */
 		   do{
 	       	    *(sorteio+i)= rand() % 101;
 	            repetido = 1;
@@ -166,10 +184,10 @@ void bubblesort2(int *v, int n)
 {
 	int aux, i, j, trocou=1;
 	for (i=0; i<n-1 && trocou; i++) {
-		trocou=0;   /*inicialmente nenhuma troca foi feita */
+		trocou=0;   
 		for (j=0; j<n-1-i; j++)
 		   if (v[j] > v[j+1]) {
-			trocou=1; /* houve troca */
+			trocou=1; 
 			aux=v[j];
 			v[j]=v[j+1];
 			v[j+1]=aux;
