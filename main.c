@@ -4,14 +4,14 @@
 #include<stdbool.h>
 
 
-/*Prototipos das funçoes */
+/*Prototipos das funÃ§oes */
 void sorteio_num(int *sorteio,int n);
 void ler_aposta(int *aposta,int n);
 int* compara_aposta(int *aposta, int *sorteio, int *qtdacertos, int na, int ns);
 void bubblesort2(int *v, int n);
 
 
-/* construção da função principal */
+/* construÃ§Ã£o da funÃ§Ã£o principal */
 int main(int argc, char *argv[]) {
 	int na;
 	int ns=20;
@@ -45,7 +45,7 @@ int main(int argc, char *argv[]) {
 	printf("\t*******************************************\n");
 	printf("\n");
 	
-	/* Solicitação da quantidade apostada pelo usuario */
+	/* SolicitaÃ§Ã£o da quantidade apostada pelo usuario */
 	do{
 		printf("Digite a quantidade de numeros que gostaria de apostar!\n");
 		printf("Voce pode escolher apostar de 1 a 20 numeros por vez\n");
@@ -56,7 +56,7 @@ int main(int argc, char *argv[]) {
 			auxiliar=0;
 	    }while(!auxiliar);
 	
-	/* Chamada das funçoes */
+	/* Chamada das funÃ§oes */
 	ler_aposta(aposta,na);
 	sorteio_num(sorteio,ns);
 	vetorapostafinal=compara_aposta(aposta,sorteio,&qntd,na,ns);
@@ -70,7 +70,7 @@ int main(int argc, char *argv[]) {
 	printf("\t*****************************************\n");
 	printf("\n");
 
-	/* Exibindo os numeros Sorteados pela funçao sorteio_num */
+	/* Exibindo os numeros Sorteados pela funÃ§ao sorteio_num */
 	for (i = 0; i < ns; i++){
 		if(i % 5 == 0){
    			printf("\n");
@@ -117,7 +117,7 @@ void sorteio_num(int *sorteio,int n){
 	printf("\n");
 	 for (i = 0; i < n; i++) {
         int repetido = 0;
-        /*Validando os numeros Sorteados se não são repetidos ou se já existem no vetor */
+        /*Validando os numeros Sorteados se nÃ£o sÃ£o repetidos ou se jÃ¡ existem no vetor */
 		   do{
 	       	    *(sorteio+i)= rand() % 101;
 	            repetido = 1;
@@ -142,13 +142,13 @@ void ler_aposta(int *aposta,int n){
                 if ( *(aposta+i) < 0 || *(aposta+i)>100 ||  *(aposta+i) == *(aposta+j) ){
                 printf("*******************************************\n");
                 printf("*                 Erro                    *\n");
-				printf("*    Numero digitado ja foi apostado      *\n");
-				printf("*         Ou Acima do permitido           *\n");
-				printf("*             para se apostar             *\n");
-				printf("*******************************************\n");
-				printf("\n"); 
-				repetido = 0;
-				 }
+		printf("*    Numero digitado ja foi apostado      *\n");
+		printf("*         Ou Acima do permitido           *\n");
+		printf("*             para se apostar             *\n");
+		printf("*******************************************\n");
+		printf("\n"); 
+		repetido = 0;
+		  	 }
             	}        
 	   	}while(!repetido);  
 	}
